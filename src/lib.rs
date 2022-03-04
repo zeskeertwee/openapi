@@ -73,10 +73,7 @@ where
     let mut string = String::new();
     read.read_to_string(&mut string)?;  
 
-    match serde_yaml::from_str(&string) {
-  	    Ok(spec) => return Ok(spec),
-	    Err(_) => return Ok(serde_json::from_str(&string)?),
-    }
+    return Ok(serde_json::from_str(&string)?);
 }
 
 /// serialize to a yaml string
