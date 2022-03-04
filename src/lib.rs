@@ -29,7 +29,7 @@ use std::{fs::File, io::Read, path::Path, result::Result as StdResult};
 
 pub mod error;
 pub mod v2;
-pub mod v3_0;
+//pub mod v3_0;
 
 pub use error::Error;
 
@@ -48,17 +48,17 @@ pub enum OpenApi {
     /// for more information.
     V2(v2::Spec),
 
-    /// Version 3.0.1 of the OpenApi specification.
-    ///
-    /// Refer to the official
-    /// [specification](https://github.com/OAI/OpenAPI-Specification/blob/0dd79f6/versions/3.0.1.md)
-    /// for more information.
-    #[allow(non_camel_case_types)]
-    V3_0(v3_0::Spec),
+    // Version 3.0.1 of the OpenApi specification.
+    //
+    // Refer to the official
+    // [specification](https://github.com/OAI/OpenAPI-Specification/blob/0dd79f6/versions/3.0.1.md)
+    // for more information.
+    //#[allow(non_camel_case_types)]
+    //V3_0(v3_0::Spec),
 }
 
 /// deserialize an open api spec from a path
-pub fn from_path<P>(path: P) -> Result<OpenApi>
+pub fn from_path<P>(path: P) -> Result<v2::Spec>
 where
     P: AsRef<Path>,
 {
@@ -66,7 +66,7 @@ where
 }
 
 /// deserialize an open api spec from type which implements Read
-pub fn from_reader<R>(mut read: R) -> Result<OpenApi>
+pub fn from_reader<R>(mut read: R) -> Result<v2::Spec>
 where
     R: Read,
 {
